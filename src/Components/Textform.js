@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 function Textform(props) {
   const countWords = (text) => {
     text = text.trim(); // Remove leading and trailing whitespace
@@ -11,17 +10,21 @@ function Textform(props) {
     let words = text.split(/\s+/);
     return words.length;
   };
+
   const handleUpClick = () => {
-    let newtext = text.toUpperCase();
-    setText(newtext);
+    let newText = text.toUpperCase();
+    setText(newText);
   };
+
   const handleLoClick = () => {
-    let newtext = text.toLowerCase();
-    setText(newtext);
+    let newText = text.toLowerCase();
+    setText(newText);
   };
+
   const handleClear = () => {
     setText("");
   };
+
   const handleOnChange = (event) => {
     const inputText = event.target.value;
     setText(inputText);
@@ -31,7 +34,7 @@ function Textform(props) {
 
   return (
     <div>
-      <div className="mb-3 my-3" style={{ textAlign: "center", color: props.borderColor}}>
+      <div className="mb-3 my-3" style={{ textAlign: "center", color: props.borderColor }}>
         <label htmlFor="mybox" className="form-label">
           {props.heading}
         </label>
@@ -41,34 +44,42 @@ function Textform(props) {
           rows="5"
           value={text}
           onChange={handleOnChange}
-          style={{ width: "80%", marginLeft: "auto", marginRight: "auto", color: props.borderColor}}
+          style={{ width: "80%", marginLeft: "auto", marginRight: "auto", color: props.borderColor }}
         ></textarea>
-        <button
-          type="button"
-          className={`btn btn-${props.btnColor} mx-1`}
-          onClick={handleUpClick}
-        >
-          Convert To UpperCase
-        </button>
-        <button
-          type="button"
-          className={`btn btn-${props.btnColor} mx-1`}
-          onClick={handleLoClick}
-        >
-          Convert To LowerCase
-        </button>
-        <button
-          type="button"
-          className={`btn btn-${props.btnColor} mx-1`}
-          onClick={handleClear}
-        >
-          Clear
-        </button>
+        <div className="d-flex flex-wrap justify-content-center">
+          <div className="p-1">
+            <button
+              type="button"
+              className={`btn btn-${props.btnColor}`}
+              onClick={handleUpClick}
+            >
+              Convert To UpperCase
+            </button>
+          </div>
+          <div className="p-1">
+            <button
+              type="button"
+              className={`btn btn-${props.btnColor}`}
+              onClick={handleLoClick}
+            >
+              Convert To LowerCase
+            </button>
+          </div>
+          <div className="p-1">
+            <button
+              type="button"
+              className={`btn btn-${props.btnColor}`}
+              onClick={handleClear}
+            >
+              Clear
+            </button>
+          </div>
+        </div>
       </div>
       <div className="container my-2" style={{ textAlign: "center", color: props.borderColor }}>
         <h4>Your Text Summary</h4>
         <p>
-        {countWords(text)} : Words {text.length} : Character
+          {countWords(text)} : Words {text.length} : Characters
         </p>
         <p>{0.008 * countWords(text)} : Minutes to Read</p>
         <h3>Preview Text</h3>
